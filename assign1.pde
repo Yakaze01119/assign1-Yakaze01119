@@ -16,7 +16,7 @@ PImage groundhog, robot, soldier;
 void setup() {
 	size(640, 480);
 
-  // IMAGE
+	// IMAGE
   bg = loadImage("img/bg.jpg");
   soil = loadImage("img/soil.png");
   life = loadImage("img/life.png");
@@ -33,7 +33,7 @@ void setup() {
 }
 
 void draw() {
-  imageMode(CORNER);
+  imageMode(CORNERS);
   background(bg);
   colorMode(RGB);
   
