@@ -4,11 +4,11 @@ float soldierY = 200;
 float robotX = 160;
 float robotY = 160;
 
-float shootX = 0;
-float shootY = 0;
-float shootWidth = 0;
-float shootWidthX = 0;
-float shootIchi = 0;
+float shootX;
+float shootY;
+float shootP = 0;
+float shootWidth = 40;
+float shootSpeed = 2;
 
 PImage bg, soil, life;
 PImage groundhog, robot, soldier;
@@ -16,7 +16,7 @@ PImage groundhog, robot, soldier;
 void setup() {
 	size(640, 480);
 
-	// IMAGE
+  // IMAGE
   bg = loadImage("img/bg.jpg");
   soil = loadImage("img/soil.png");
   life = loadImage("img/life.png");
@@ -62,11 +62,17 @@ void draw() {
   
   // SHOOT
   fill(255,0,0);
-  rect( shootX , shootY , shootWidth ,10,5);
-  shootWidthX += 2;
-  shootWidthX %= 180;
-  shootWidth = 40*sin(radians(shootWidthX));
-  shootX = max( robotX - 160 , shootX - 2 );
+  rect( shootX , shootY , shootP ,10,5);
+  shootX -= shootSpeed;
+  shootP += shootSpeed;
+  if(shootP >= shootWidth){
+    shootP = shootWidth;
+  }
+  if(shootX < robotX - 160 + 25){
+    shootX = robotX + 25;
+    shootP = 0;
+  }
+
   
   // SOLDIER
   imageMode(CENTER);
